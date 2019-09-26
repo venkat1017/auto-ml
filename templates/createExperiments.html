@@ -1,0 +1,41 @@
+ {% extends 'base.html' %}
+
+{% block body %}
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">
+        Creating new Experiments
+      </div>
+      <div class="card-body">
+        <form form action="{{ url_for('create') }}" method="POST">
+          {% if error  %}
+          <div class="alert alert-warning">
+            <strong>Warning!</strong> {{ error }}
+          </div>
+          {% endif %}
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label for="username">Task Name</label>
+              {{ form.username(class_="form-control", placeholder="TaskName", id="taskname") }}
+          </div>
+          
+          <div class="form-group">
+            <label for="data">Input Dataset</label>
+              {{ form.data(class_="custom-select w-70", id="data") }}
+          </div>
+
+          <div class="form-group">
+            <label for="algo">Algorithm</label>
+              {{ form.algo(class_="custom-select w-70", id="algo") }}
+          </div>
+           <div>
+            <button class="btn btn-primary btn-block" value=create type="submit">Create</button>
+            <a href="/users" class="btn btn-secondary btn-block" role="button" aria-pressed="true">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
